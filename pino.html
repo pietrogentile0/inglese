@@ -1,0 +1,133 @@
+<html>
+    DA TOGLIERE
+    <script>
+        function assenti(){
+            document.getElementById("schermo di visualizzazione").innerHTML+="quanti sono gli assenti di oggi? scrivilo nella casella rossa";
+            let cnt = document.getElementById("casella_rossa").value;
+            parseint(cnt);
+            document.getElementById("schermo di visualizzazione").innerHTML+="inserisci il nome degli assenti nelle caselle sottostanti";
+            if(cnt==1){
+                let ass1 =+ document.getElementById("casella_1").value;
+            }else if(cnt==2){
+                let ass1 =+ document.getElementById("casella_1").value;
+                let ass2 =+ document.getElementById("casella_2").value;
+            }else if(cnt==3){
+                let ass1 =+ document.getElementById("casella_1").value;
+                let ass2 =+ document.getElementById("casella_2").value;
+                let ass3 =+ document.getElementById("casella_3").value;
+            }else if(cnt==4){
+                let ass1 =+ document.getElementById("casella_1").value;
+                let ass2 =+ document.getElementById("casella_2").value;
+                let ass3 =+ document.getElementById("casella_3").value;
+                let ass4 =+ document.getElementById("casella_4").value;
+            }else if(cnt==5){
+                let ass1 =+ document.getElementById("casella_1").value;
+                let ass2 =+ document.getElementById("casella_2").value;
+                let ass3 =+ document.getElementById("casella_3").value;
+                let ass4 =+ document.getElementById("casella_4").value;
+                let ass5 =+ document.getElementById("casella_5").value;
+            }
+            for(let i=0; i<28; i++){
+                let stu = document.getElementById("nome alunno").value; punta al primo alunno
+                if(stu == ass1){
+                    mettiamo assente l'alunno e assenze++; 
+                }else if(stu == ass2){
+                    mettiamo assente l'alunno e assenze++; 
+                }else if(stu == ass3){
+                    mettiamo assente l'alunno e assenze++; 
+                }else if(stu == ass4){
+                    mettiamo assente l'alunno e assenze++; 
+                }else if(stu == ass5){
+                    mettiamo assente l'alunno e assenze++; 
+                }
+            }
+            for(let i=0; i<28; i++){
+                let pres = document.getElementById("presente si\no").value;  punta al primo alunno
+                let stu = document.getElementById("nome alunno").value; punta al primo alunno
+                if(press == 1){
+                    document.getElementById("schermo di visualizzazione").innerHTML+= stu + "è presente";
+                }
+                sposta il puntatore sull'alunno successivo  
+            }
+        }
+        
+        function int_mat(){
+            document.getElementById("schermo di visualizzazione").innerHTML+="vuoi togliere le persone gia interrogate?";
+            (dobbiamo mettere un bottone che funziona come flag, se positivo fa escude interrogati, se no non lo fa);
+            if(bottone == 1){
+                for(let i=0; i<28; i++){
+                    let pres = document.getElementById("media alunno\no").value;  punta al primo alunno
+                    let stu = document.getElementById("nome alunno").value; punta al primo alunno
+                    if(media > 0){
+                        mettiamo come assente l'alunno che ha gia un voto perchè non so come fare una variabile globale;
+                    }
+                    sposta il puntatore sull'alunno successivo  
+                }
+            }
+        }
+
+        function int_oggi(){
+            document.getElementById("schermo di visualizzazione").innerHTML+="quante persone sono gia state interrogate oggi?scrivilo nella casella verde";
+            let cnt = document.getElementById("casella_rossa").value;
+            parseint(cnt);
+            document.getElementById("schermo di visualizzazione").innerHTML+="se vuoi escludere le persone interrogate oggi scrivile nelle caselle verde";
+            if(cnt==1){
+                let esc1 =+ document.getElementById("casella_1").value;
+            }else if(cnt==2){
+                let esc1 =+ document.getElementById("casella_1").value;
+                let esc2 =+ document.getElementById("casella_2").value;
+            }else if(cnt==3){
+                let esc1 =+ document.getElementById("casella_1").value;
+                let esc2 =+ document.getElementById("casella_2").value;
+                let esc3 =+ document.getElementById("casella_3").value;
+            }else if(cnt==4){
+                let esc1 =+ document.getElementById("casella_1").value;
+                let esc2 =+ document.getElementById("casella_2").value;
+                let esc3 =+ document.getElementById("casella_3").value;
+                let esc4 =+ document.getElementById("casella_4").value;
+            }else if(cnt==5){
+                let esc1 =+ document.getElementById("casella_1").value;
+                let esc2 =+ document.getElementById("casella_2").value;
+                let esc3 =+ document.getElementById("casella_3").value;
+                let esc4 =+ document.getElementById("casella_4").value;
+                let esc5 =+ document.getElementById("casella_5").value;
+            }
+            for(let i=0; i<28; i++){
+                let stu = document.getElementById("nome alunno").value; punta al primo alunno
+                if(stu == esc1){
+                    mettiamo assente l'alunno perche non so come fare var globali; 
+                }else if(stu == esc2){
+                    mettiamo assente l'alunno perche non so come fare var globali; 
+                }else if(stu == esc3){
+                    mettiamo assente l'alunno perche non so come fare var globali; 
+                }else if(stu == esc4){
+                    mettiamo assente l'alunno perche non so come fare var globali; 
+                }else if(stu == esc5){
+                    mettiamo assente l'alunno perche non so come fare var globali; 
+                }
+                sposta il puntatore sull'alunno successivo  
+            }
+        }
+        
+        
+        document.getElementById("schermo di visualizzazione").innerHTML+="professore vuoi togliere dalla lista dei possibili interrogati qualcuno?";
+        (lista dei possibili interrogati(quindi esclusi i gia interrogati oggi se ce ne sono) e la prof sceglie se togliere o meno 
+        poi clicca successivo che chiamera la funzione successiva);
+        aggiungere al database una colonna "preferenze" dove si mette a: no se la prof vuole escludere quel nome dalla lista
+        
+        document.getElementById("schermo di visualizzazione").innerHTML+="professore selezioni chi è gia stato interrogato oggi e clicchi successivo";
+        aggiungere al database una colonna "interrogato oggi" dove si mette a: no se è gia stato interrogato oggi;
+
+        ASSENZE ALGORITMO
+        let pinotti=document.getElementById("assenze nel database").value;
+        parseint(pinotti);
+
+        aggiungere in database colonna probabilità 
+        
+        for(let i=0; i<pinotti; i++){
+            if(pinotti>i){
+                probabilità = probabilita +5;
+            }
+        }
+    </script>
+</html>
