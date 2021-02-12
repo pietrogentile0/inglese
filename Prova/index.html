@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QUERY MANAGER - 4</title>
+<meta name="viewport" content="user-scalable=no,width=device-width"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body style="margin:30px">
+
+<div class="container">
+	
+<div class="row">
+<form>
+	<fieldset>
+		<legend>ID</legend>
+		<input type="text" class="form-control" name="" id="item">
+		<legend>NAME</legend>
+		<input type="text" class="form-control" name="" id="item">
+		<legend>SURNAME</legend>
+		<input type="text" class="form-control" name="" id="item">
+		<legend>MEDIA</legend>
+		<input type="text" class="form-control" name="" id="item">
+		<legend>GRUPPO</legend>
+		<input type="text" class="form-control" name="" id="item">
+
+
+<br>
+<button type="button" id="inserisci" class="btn btn-success">Insert</button>
+
+<button type="button" id="create" class="btn btn-success">Create Table</button>
+
+<button type="button" id="remove" class="btn btn-danger">Delete Table</button>
+
+<button type="button" id="list" class="btn btn-success">Fetch Record</button>
+
+	</fieldset>
+</form>
+
+<hr>
+<h4>Record</h4>
+<table class="table table-bordered table-hover" id="itemlist">
+	
+</table>
+
+
+
+
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+var db=openDatabase("itemDB","1.0","itemDB",65535);
+$(function(){
+
+loadData();
+
+
+$("#create").click(function(){
+db.transaction(function(transaction){
+	var sql="CREATE TABLE items "+
+	"(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+
+	"item VARCHAR(100) NOT NULL,"+
+	"quantity INT(5) NOT NULL)";
+	transaction.executeSql(sql,undefined,function(){
+		alert("Table is created successfully");
+	},function(){
+		alert("Table is already being created");
+	})
+});
+});
+// to remove
+
+$("#remove").click(function(){
+
+if(!confirm("Are you sure to delete this table?","")) return;;
+db.transaction(function(transaction){
+	var sql="DROP TABLE items";
+	transaction.executeSql(sql,undefined,function(){
+		alert("Table is deleted successfully")
+	},function(transaction,err){
+		alert(err.message);
+	})
+});
+});
+
+//to insert
+
+$("#insert").click(function(){
+var item=$("#item").val();
+var qty=$("#quantity").val();
+var qty=$("#quantity").val();
+db.transaction(function(transaction){
+var sql="INSERT INTO items(item,quantity) VALUES(?,?)";
+transaction.executeSql(sql,[item,qty],function(){
+	alert("New item is added successfully");
+},function(transaction,err){
+	alert(err.message);
+})
+})
+
+})
+
+
+//to fetch
+
+$("#list").click(function(){
+loadData();
+})
+
+function loadData(){
+		$("#itemlist").children().remove();
+	db.transaction(function(transaction){
+		var sql="SELECT * FROM items ORDER BY id DESC";
+		transaction.executeSql(sql,undefined,function(transaction,result){
+if(result.rows.length){
+
+for(var i=0;i<result.rows.length;i++){
+	var row=result.rows.item(i);
+	var item=row.item;
+	var id=row.id;
+	var quantity=row.quantity;
+	$("#itemlist").append('<tr><td>'+id+'</td><td>'+item+'</td><td>'+quantity+'</td></tr>');
+}
+}else{
+	$("#itemlist").append('<tr><td colspan="3" align="center">No Item Found</td></tr>');
+}
+
+
+		},function(transaction,err){
+			alert('No table found. Click on "Create Table" to create table now');
+		})
+	})
+}
+
+})
+
+
+
+</script>
+
+</body>
+</html>
