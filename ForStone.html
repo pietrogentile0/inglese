@@ -1,0 +1,37 @@
+<!--
+-->
+
+<html>
+    <head>
+        <title>DB</title>
+    </head>
+    <body>
+        <div>
+            DATI PRIMA PERSONA:<br/>
+            inserisci nome: 
+            <input type="text" value="" id="testo1"> <br/>
+            Inserisci Gruppo <input type="number" id=N1>
+        </div>  
+           DATI SECONDA PERSONA:<br/>
+            Inserisci nome:
+            <input type="text" value="" id="testo2"> <br/>
+            Inserisci Gruppo <input type="number" id=N2><br/>
+         <div>
+              
+        <input type="button" value="Esegui" id="bottone" onclick="controllo()"><br/>
+        <script>
+            let temp="";
+
+            function controllo(){
+                if(document.getElementById("testo1").value === document.getElementById("testo2").value){
+                    alert("STESSA PERSONA");
+                }alert("NON é LA STESSA PERSONA");
+                if(document.getElementById("N1").value == document.getElementById("N2").value){
+                    alert("APPARTENGONO ALLO STESSO GRUPPO");  
+                }else{
+                    alert("Gruppo diverso");
+                }
+            }
+        </script>
+    </body>
+</html>
