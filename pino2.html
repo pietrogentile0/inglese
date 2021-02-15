@@ -1,0 +1,85 @@
+<html>
+    DA TOGLIERE
+    document.getElementById("schermo di visualizzazione").innerHTML+="quante persone vuoi interrogare oggi?";
+    <script>
+        function assenti(){     //questa funzione è collegata all'onclick del confermare assente
+            //document.getElementById("schermo di visualizzazione").innerHTML+="scrivi gli assenti di oggi e premi invio dopo l'inserimento di ogni cognome";   in main
+            let ass = document.getElementById("casella_rossa").value;
+            
+            for(let i=0; i<27; i++){
+                let stu = document.getElementById("nome alunno").value;     punta al primo alunno
+                if(stu == ass){
+                    mettiamo assente l'alunno e assenze++ nel db1; 
+                    "rimuovi il seguente alunno nel db2";
+                    probabilità = assenze *5;       
+                }
+            } 
+        }
+        
+        function int_mat(){     //questa funzione è collegata all'onclick del confermare assente
+            document.getElementById("schermo di visualizzazione").innerHTML+="vuoi togliere le persone gia interrogate?";       //in main
+                for(let i=0; i<27; i++){        //ti muovi tra le medie del db2 e se media>0 rimuovi quell'alunno dal db2
+                    let media = document.getElementById("media alunno\no").value;  punta alla media del primo e poi cambia
+                    if(media > 0){
+                        "rimuovi il seguente alunno nel db2";
+                    }
+                    sposta il puntatore sull'alunno successivo  
+                }
+        }
+
+        function int_oggi(){     //collegato a onclick della conferma 
+            document.getElementById("schermo di visualizzazione").innerHTML+="scrivi le persone che gia sono state interrogate oggi e conferma dopo aver scritto ogni cognome"; //in main
+            let esc = document.getElementById("casella_rossa").value;
+               //facciamo una funzione che viene chiamata quando ilk tasto viene cliccato dove cerca il nome nel database e lo mette assente e assenze++
+            //1.inserisxci alunno 2.clicca bottone 3.rimuovi da db2
+            for(let i=0; i<28; i++){
+                let stu = document.getElementById("nome alunno").value; punta al primo alunno e poi cambia
+                if(stu == esc){
+                    "rimuovi il seguente alunno nel db2";
+                }
+                sposta il puntatore sull'alunno successivo  
+            }
+        }
+        
+        
+        function scelte_prof(){
+            document.getElementById("schermo di visualizzazione").innerHTML+="professore se vuole togliere dalla lista dei possibili interrogati qualcuno lo scriva nella casella a lato e confermi";    //in main
+            esc=document.getElementById("casella_di_testo").value;
+            for(let i=0; i<28; i++){
+                let stu = document.getElementById("nome alunno").value; punta al primo alunno e poi cambia
+                if(stu == esc){
+                    "rimuovi il seguente alunno nel db2";
+                }
+                sposta il puntatore sull'alunno successivo  
+            }
+        }
+
+        function algoritmo_assenze(){       //se prof clicca si parte la funzione 
+            document.getElementById("schermo di visualizzazione").innerHTML+="professore vuole applicare l'algoritmo delle assenze?";    //in main
+            let prob = document.getElementById("probabilità").value; probabilità primo alunno
+            let flag = 0;
+            for(let i=0; i<num_interrogati; i++){
+                for(let i=0; i<27; i++){
+                    let temp = document.getElementById("prob alunno").value; punta alla prob seguente
+                    let stu = document.getElementById("nome alunno").value; punta all'alunno seguente
+                    if(temp != 3){
+                        if(temp>=prob){
+                            document.getElementById("schermo di visualizzazione").innerHTML+= +stu+"sei stato estratto!"; 
+                            flag ++;
+                        }
+                    }
+                    sposta il puntatore sull'alunno e prob successiva 
+                }
+                
+            }
+            if(flag<num_interrogati){       //randoma se rimane posto
+                    for(let i=0; i<27; i++){
+                        let interrogato= Math.ceil(Math.random()+ 27 ) +1;      
+                        cercare nel database a chi corrisponde il numero estratto;
+                    }
+            }
+        }
+        
+        
+    </script>
+</html>
