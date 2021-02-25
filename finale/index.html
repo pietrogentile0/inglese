@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <head>
+        <title>Mission6</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <style>
+            #body{
+                background-color: #ffc90d;
+            }
+            #main{
+                text-align: center;
+                font-family: Rockwell;
+                font-size: 20px;
+            }
+            .button{
+                background-color: #ffc90d;
+            }
+            .listScreen{
+                text-align: center;
+                background-color: #fc9816; 
+                border-radius: 5px 5px 5px 5px;
+                margin-left: auto;
+                margin-right: auto;
+                border-style: dashed #fc9816; 
+            }
+           
+        </style>
+    </head>
+    <body id="body">
+        <img src = "img/logo.png" width="13%" height="100%" style="margin-left: 15px; border-radius: 20px 20px 20px 20px;"> 
+        
+        <div id="main">   
+            <h2>Welcome in Mission6, your school's query manager!</h2>
+                Which group do you want to choose?
+                <input type="radio" name="group" value="1"><lable>Group n1</lable>
+                <input type="radio" name="group" value="2"><lable>Group n2</lable>
+                <input type="radio" name="group" value="3"><lable>All students</lable>
+                <input type="button" class='button' id="groupSel" value="Choose group">
+            <div id="listScreen">
+                <div id="list"></div>
+                <div id="result">
+                    <input type='button' class='button'id='absentButton' value='Update list'><br/>
+                </div>
+                
+            </div>
+            
+            <br/>
+            
+        </div> 
+        
+        <script>
+            jQuery(document).ready(function(){  
+                jQuery("#groupSel").click(function(){   //choosing group
+                    let group = jQuery("input[type='radio'][name='group']:checked").val();
+                    jQuery.ajax({
+                        url: "http://localhost/inglese/finale/functions.php",
+                        data: {group: group, fun: 'table'},
+                    }).done(function(e){
+                        jQuery("#list").html(e);
+                    });
+                });
+
+                jQuery("#absentButton").click(function(){       //absent function
+                    //saving absents or excluded
+                    let absents = [];
+                    let excluded = [];
+                    jQuery("input[name='absents[]']:checked").each(function(){ 
+                        $(this).closest('tr').remove();
+                        absents.push(this.value);
+                    });
+                    jQuery("input[name='exclude[]']:checked").each(function(){ 
+                        excluded.push(this.value);
+                    });
+                    // $(".listScreen td").each(function() { 
+                    //     if (absents.indexOf($(this).val()) > -1){
+                    //         $(this).remove();
+                    //     }
+                    // });
+                    //from array to string  --> pass to php
+                    let jsonAbs = JSON.stringify(absents);
+                    let jsonExc = JSON.stringify(excluded);
+                    if(absents.length > 0){    
+                        jQuery.ajax({
+                            url: "http://localhost/inglese/finale/functions.php",
+                            data: {absents: jsonAbs, excluded: jsonExc, fun: 'absents'},
+                        }).done(function(){
+                            jQuery("<h4>Ok! I've removed this guys</h4>").insertAfter('#absentButton');
+                        });
+                    }
+                    else{
+                        jQuery("#result").html("<h3>Nobody is absent</h3>");
+                    }
+                    document. getElementById("absentButton").style.display = "none";
+                });
+            });
+
+        </script>
+    </body>
+</html>

@@ -14,8 +14,23 @@
             <input type="text" value="" id="testo2"> <br/>
             Inserisci Gruppo <input type="number" id=N2><br/>
         
-        <input type="button" value="Esegui" id="bottone" onclick="controllo()"><br/>
-        <script>
+        <button value="Esegui" id="bottone" onclick="controllo()"><br/>
+        
+       <?php
+            $hostname = 'localhost';
+            $username = 'root'
+            $password = '';
+            $db_name = 'questioning';
+
+            $conn = mysqli($hostname, $username, $password, $db_name);
+
+            if(conn->connest_error){
+                die("Connectioon failed: " . connect->error);
+            }
+       ?>
+        
+        
+        <!--<script>
             function controllo(){
                 if(document.getElementById("testo1").value === document.getElementById("testo2").value){
                     alert("STESSA PERSONA");
@@ -26,6 +41,6 @@
                     alert("Gruppo diverso");
                 }
             }
-        </script>
+        </script>-->
     </body>
 </html>
